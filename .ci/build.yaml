@@ -19,7 +19,8 @@ jobs:
   - script: esy install
     displayName: 'esy install'
   - ${{ if eq(parameters.host, 'Windows') }}:
-    - script: esy b bash .ci/pkg-config-cygwin.sh
-      displayName: 'Installing pkg-config in cygwin'
-  - script: 'esy x pkg-config --libs pixman-0.38.4'
-    displayName: 'Checking library...'
+    - script: esy b --install
+      displayName: 'esy installing TODO pkg-config'
+  - ${{ if ne(parameters.host, 'Windows') }}:
+    - script: 'esy x pkg-config --libs pixman-1'
+      displayName: 'Checking library...'
